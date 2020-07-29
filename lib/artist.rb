@@ -1,7 +1,7 @@
 require 'pry'
 class Artist
 
-  attr_accessor :name, :songs
+  attr_accessor :name
 
   def initialize(name)
     @name = name
@@ -17,6 +17,10 @@ class Artist
     song_name = Song.new(song_name)
     song_name.artist = self
     @songs << song_name
+  end
+
+  def songs
+    Song.all.select{|song| song.artist == self}
   end
 
   def self.song_count
